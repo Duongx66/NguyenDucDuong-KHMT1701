@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bắn Gà — Demo
 
 Hướng dẫn nhanh để chạy bản demo trên máy tính:
@@ -15,3 +16,6 @@ Ghi chú kỹ thuật:
 	- Vàng: `extraBullets` — tăng số đạn đồng thời (tối đa 3 viên mỗi lần bắn).
 	- Xanh lá: `rate` — tăng tốc độ bắn.
 - Nếu muốn nâng cấp sang giải pháp chính xác hơn, mình có thể tích hợp MediaPipe Hands hoặc TensorFlow.js handpose.
+=======
+# NguyenDucDuong-KHMT1701
+>>>>>>> 41b18e598d3f13e425d4c14cc46efdfe809e9b8f
