@@ -1,21 +1,66 @@
-<<<<<<< HEAD
-# Bắn Gà — Demo
+# Bắn Ruồi — Demo
 
-Hướng dẫn nhanh để chạy bản demo trên máy tính:
+Một game bắn ruồi (shooter) nhỏ viết bằng HTML/CSS/JavaScript. Game dùng webcam (MediaPipe Hands) để điều khiển tàu hoặc có thể điều khiển bằng phím mũi tên.
 
-- Mở `index.html` bằng trình duyệt (Chrome/Edge/Firefox). Nếu dùng VS Code, có thể mở bằng extension Live Server.
-- Cho phép webcam khi trình duyệt yêu cầu.
-- Nhấn `Lấy màu` rồi click vào video nhỏ (góc phải) để chọn màu điều khiển (ví dụ găng tay/tấm màu sáng).
-- Nhấn `Bắt đầu` để chơi. Có thể dùng phím ← → làm phương án dự phòng.
+Tính năng
+- Điều khiển bằng bàn tay (MediaPipe Hands) hoặc phím mũi tên.
+- Ruồi là kẻ địch, boss là ruồi lớn kèm ruồi con.
+- Power-ups: shield, tăng HP, thêm đạn, tăng tốc bắn.
+- Hiệu ứng hạt, phóng nổ, SFX cơ bản.
+- Lưu kỉ lục (high-score) cục bộ bằng `localStorage`.
+- Nền vũ trụ với Trái Đất và phi thuyền bảo vệ.
 
-Ghi chú kỹ thuật:
-- Dùng một thuật toán đơn giản: lấy centroid các pixel gần màu đã chọn (HSV) để điều khiển trục X của chiến cơ.
-- Power-ups xuất hiện ngẫu nhiên (màu):
-	- Xanh dương: `shield` — bảo vệ một lần (tiêu thụ khi bị trúng).
-	- Đỏ: `maxHealth` — tăng máu tối đa (tối đa 5 máu).
-	- Vàng: `extraBullets` — tăng số đạn đồng thời (tối đa 3 viên mỗi lần bắn).
-	- Xanh lá: `rate` — tăng tốc độ bắn.
-- Nếu muốn nâng cấp sang giải pháp chính xác hơn, mình có thể tích hợp MediaPipe Hands hoặc TensorFlow.js handpose.
-=======
-# NguyenDucDuong-KHMT1701
->>>>>>> 41b18e598d3f13e425d4c14cc46efdfe809e9b8f
+Tệp chính
+- `index.html` — giao diện và DOM
+- `style.css` — kiểu
+- `game.js` — logic game (spawn, render, CV, input, SFX)
+
+Yêu cầu
+- Trình duyệt hiện đại (Chrome/Edge/Firefox).
+- Cho phép truy cập webcam khi sử dụng điều khiển bằng tay.
+- Kết nối internet để tải MediaPipe CDN (nếu dùng hand tracking).
+
+Chạy trên máy (localhost)
+
+Sử dụng Python (Port 8000):
+
+```bash
+python -m http.server 8000
+# Mở http://localhost:8000/ trong trình duyệt
+```
+
+Hoặc dùng `serve` (Node):
+
+```bash
+npx serve .
+# Mở địa chỉ mà serve thông báo (thường http://localhost:3000/)
+```
+
+Lưu ý: Không mở file trực tiếp (`file://`) nếu muốn truy cập webcam; dùng `http://localhost`.
+
+Điều khiển
+- Bàn tay: bật `Dùng bàn tay`, di chuyển cổ tay để điều khiển tàu (X/Y).
+- Bàn phím: `←` `→` `↑` `↓` để di chuyển. Tự động bắn theo `fireRate` của tàu.
+- Nút `Bắt đầu` / `Chơi lại` để bắt đầu hoặc reset.
+
+Cơ chế level
+- Level tăng dần vô hạn; boss xuất hiện ở level chia hết cho 3.
+- Level 1 được làm dễ hơn: ít ruồi, ít bắn, tỉ lệ rớt powerup cao hơn.
+
+High-score
+- Lưu vào `localStorage` với khóa `bannuoi_highscore`.
+- Để xóa kỉ lục, mở Console trình duyệt và chạy:
+
+```js
+localStorage.removeItem('bannuoi_highscore')
+```
+
+Gợi ý tùy chỉnh
+- Thay đổi spawn, tốc độ, màu sắc ở `game.js`.
+- Thêm hoặc tắt MediaPipe trong `index.html` nếu muốn chơi chỉ bằng phím.
+
+Khắc phục sự cố
+- Nếu MediaPipe không tải: kiểm tra kết nối Internet và console (CDN).
+- Nếu không thấy webcam: cho phép quyền camera cho trang, tải lại trang và dùng `http://localhost`.
+
+Muốn mình thêm gì vào README (hướng dẫn đóng gói, tối ưu, hay build nhỏ để chia sẻ) không?
