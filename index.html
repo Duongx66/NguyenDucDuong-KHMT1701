@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bắn Ruồi – Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Bắn Ruồi  — Demo</div>
+      <div class="controls">
+        <button id="startBtn" class="btn primary">Bắt đầu</button>
+        <button id="handBtn" class="btn">Dùng bàn tay</button>
+        <label class="hint">Hoặc dùng phím ← → / ↑ ↓ để di chuyển</label>
+      </div>
+    </header>
+
+    <div class="game-wrap">
+      <canvas id="gameCanvas" width="900" height="600"></canvas>
+      <video id="video" autoplay playsinline muted></video>
+
+      <div class="hud-dom">
+        <div class="stat"><div class="value" id="domScore">0</div><div class="label">Score</div></div>
+        <div class="stat"><div class="value" id="domHigh">0</div><div class="label">Kỉ lục</div></div>
+        <div class="stat"><div class="value" id="domLevel">1</div><div class="label">Level</div></div>
+        <div class="stat"><div class="value" id="domHp">1/1</div><div class="label">HP</div></div>
+      </div>
+
+      <div id="overlay" class="overlay hidden">
+        <div id="overlayText" class="overlay-text"></div>
+        <button id="restartBtn" class="btn primary">Chơi lại</button>
+      </div>
+
+      <!-- Start screen shown on first load -->
+      <div id="startScreen" class="start-screen">
+        <div class="start-card">
+          <h1>Bắn Ruồi</h1>
+          <p class="lead">Level 1 — Tập luyện: di chuyển bằng tay hoặc phím mũi tên.</p>
+          <ul class="instructions">
+            <li>Nhấn <strong>Bắt đầu</strong> hoặc nút bên dưới để vào Level 1.</li>
+            <li>Bật <em>Dùng bàn tay</em> để điều khiển bằng webcam.</li>
+            <li>Thu thập powerups để tăng HP và đạn.</li>
+          </ul>
+          <div class="start-actions">
+            <button id="enterLevel1" class="btn primary large">Bắt đầu Level 1</button>
+            <button id="skipIntro" class="btn">Chơi ngay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">Cho phép webcam khi trình duyệt hỏi. Bật "Dùng bàn tay" để điều khiển bằng vị trí bàn tay.</div>
+  </div>
+
+  <!-- MediaPipe (Hands + Camera utils) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
